@@ -172,6 +172,15 @@ On a push to the repository or opening a pull request the [deploy.yml](https://g
 
 Upon opening a pull request into the main branch the scripts will also trigger a Cypress E2E and an A11y step to ensure that the code quality is still passing the End-to-End and accessibility tests.
 
+## Storybook
+
+We've utilized Storybook to allow developers to play with components and see all of their interactions. It also includes an accessibility plugin! To start Storybook:
+
+```
+cd services/ui-src/
+yarn storybook
+```
+
 ## Deployments
 
 This application is built and deployed via GitHub Actions.
