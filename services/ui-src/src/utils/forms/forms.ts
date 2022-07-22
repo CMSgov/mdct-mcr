@@ -3,6 +3,7 @@ import React from "react";
 import {
   CheckboxField,
   DateField,
+  DynamicField,
   RadioField,
   TextField,
   TextAreaField,
@@ -19,6 +20,7 @@ export const formFieldFactory = (fields: FormField[], isNested?: boolean) => {
     textarea: TextAreaField,
     checkbox: CheckboxField,
     radio: RadioField,
+    dynamic: DynamicField,
   };
   return fields.map((field) => {
     const componentFieldType = fieldToComponentMap[field.type];

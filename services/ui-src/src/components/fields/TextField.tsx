@@ -12,6 +12,7 @@ export const TextField = ({
   placeholder,
   sxOverride,
   nested,
+  dynamic,
   ...props
 }: Props) => {
   const mqClasses = makeMediaQueryClasses();
@@ -25,7 +26,9 @@ export const TextField = ({
     form.setValue(name, value, { shouldValidate: true });
   };
 
-  const errorMessage = form?.formState?.errors?.[name]?.message;
+  const errorMessage =
+    form?.formState?.errors?.[name]?.message ||
+    form?.formState?.errors?.[dynamic?.parentName]?.[dynamic?.index]?.message;
   const nestedChildClasses = nested ? "nested ds-c-choice__checkedChild" : "";
 
   return (
@@ -40,7 +43,7 @@ export const TextField = ({
         placeholder={placeholder}
         onChange={(e) => onChangeHandler(e)}
         errorMessage={errorMessage}
-        inputRef={() => form.register(name)}
+        inputRef={() => dynamic?.inputRef || form.register(name)}
         defaultValue={props?.hydrate}
         {...props}
       />
@@ -54,6 +57,7 @@ interface Props {
   placeholder?: string;
   nested?: boolean;
   sxOverride?: AnyObject;
+  dynamic?: AnyObject;
   [key: string]: any;
 }
 
